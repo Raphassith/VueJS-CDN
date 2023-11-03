@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs</title>
+</head>
+
+<body>
+    <div id="app">
+        <hl></hl>
+        {{ message }}<br />
+        <cp></cp>
+
+        <ul>
+            <emp first-name="Thomas" last-name="Edison" lang="Pascal"></emp>
+            <emp first-name="Steve" last-name="Jobs" lang="C++"></emp>
+        </ul>
+        <btn @click-me="myFunction"></btn>
+    </div>
+
+    <button id="myBtn">Send</button>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        import compo from './components/compo.js'
+        import hello from './components/hello.js'
+        import employee from './components/employee.js'
+        import buttons from './components/buttons.js'
+
+        const app = createApp({
+            data() {
+                return {
+                    message: 'Hello Vue!'
+                }
+            },
+            components: {
+                'hl': hello,
+                'cp': compo,
+                'emp': employee,
+                'btn': buttons
+            },
+            methods: {
+                myFunction(msg) {
+                    console.log(msg);
+                },
+                chmessage() {
+                    this.message = 'Hello Thomas!';
+                }
+            },
+        }).mount('#app');
+
+        document.getElementById("myBtn").addEventListener("click", () => {
+            app.chmessage();
+        });
+    </script>
+</body>
+
+</html>

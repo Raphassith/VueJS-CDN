@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <hl></hl>
+        {{ message }}<br />
+        <btn @click-me="myMethod"></btn>
+        <ul>
+            <ep first-name="Steve" last-name="Jobs" lang="C++"></ep>
+            <ep first-name="Mark" last-name="Zuckerberk" lang="JavaScript"></ep>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const hello = {
+            data() {
+                return {
+                    name: 'Thomas'
+                }
+            },
+            template: `
+            <h1>Hello {{name}}</h1>
+            <hr />`
+        };
+
+        const employee = {
+            data() {
+                return {}
+            },
+            props: [
+                'firstName',
+                'lastName',
+                'lang'
+            ],
+            template: `<li>{{firstName}} {{lastName}} {{lang}}</li>`
+        };
+
+        const buttons = {
+            data() {
+                return {}
+            },
+            template: `<button @click="$emit('clickMe', 'Hello world!')">Click Me</button>`
+        }
+    </script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'Hello Vue!'
+                }
+            },
+            components: {
+                'hl': hello,
+                'ep': employee,
+                'btn': buttons
+            },
+            methods: {
+                myMethod(param) {
+                    console.log(param);
+                }
+            },
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
