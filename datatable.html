@@ -5,16 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.0/css/fixedColumns.dataTables.css" />
+    
 </head>
 
 <body>
     <div id="app">
         <table id="example" class="display nowrap" style="width:100%"></table>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/5.0.0/js/dataTables.fixedColumns.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/5.0.0/js/fixedColumns.dataTables.js"></script>
+    
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
     <script>
         var app = Vue.createApp({
             data() {
@@ -78,6 +86,10 @@
                     ],
                     columnDefs: [
                         {
+                            targets: [0, 1, 2, 3, 4, -1],
+                            className: 'dt-head-center'
+                        },
+                        {
                             targets: [-1, 3],
                             className: 'dt-body-right'
                         },
@@ -86,6 +98,13 @@
                             className: 'dt-body-center'
                         },
                     ],
+                    fixedColumns: {
+                        start: 3
+                    },
+                    paging: true,
+                    scrollCollapse: true,
+                    scrollY: false,
+                    scrollX: true,
                     data: []
                 });
 
